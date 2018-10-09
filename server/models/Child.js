@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const childSchema = new Schema ({
   name: {type: String, required: true, unique: true, trim: true},
   birthday: {type: String, required:true},
-  budget: {type: Number},
+  photo: {type: String},
+  // budget: {type: Number}
 }, 
 {timestamps: true});
 
