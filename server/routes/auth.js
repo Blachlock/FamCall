@@ -21,15 +21,9 @@ const login = (req, user) => {
   })
 }
 
-
 // SIGNUP
 router.post('/signup', (req, res, next) => {
-
-  const {username, password, email} = req.body;
-
-  console.log('username', username)
-  console.log('password', password)
-  console.log('email', email)
+  const {username, password, email, name, phone} = req.body;
 
   // Check for non empty user or password
   if (!username || !password || !email){
@@ -47,13 +41,33 @@ router.post('/signup', (req, res, next) => {
     return new User({
       username,
       password: hashPass,
-      email
+      email,
+      name, 
+      phone
     }).save();
   })
   .then( savedUser => login(req, savedUser)) // Login the user using passport
   .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
   .catch(e => next(e));
 });
+
+// Check if invitation code (phone) is correct
+// Invitation.findOne({ phone })
+// .then( foundUser => {
+//   if (foundUser) throw new Error('Username already exists');
+
+//   return new Invitation({
+//     username,
+//     password: hashPass,
+//     email,
+//     name, 
+//     phone
+//   }).save();
+// })
+// .then( savedUser => login(req, savedUser)) // Login the user using passport
+// .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
+// .catch(e => next(e));
+// });
 
 
 router.post('/login', (req, res, next) => {

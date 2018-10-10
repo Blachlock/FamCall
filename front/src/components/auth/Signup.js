@@ -5,7 +5,7 @@ import AuthService from './AuthService'
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', email: '' };
+    this.state = { username: '', password: '', email: '', name: '', phone: '' };
     this.service = new AuthService();
   }
     
@@ -14,13 +14,17 @@ class Signup extends Component {
     const username = this.state.username;
     const password = this.state.password;
     const email = this.state.email;
+    const name = this.state.name;
+    const phone = this.state.phone;
 
-    this.service.signup(username, password, email)
+    this.service.signup(username, password, email, name, phone)
     .then( response => {
         this.setState({
             username: "", 
             password: "",
-            email: ""
+            email: "",
+            name: "",
+            phone: ""
         });
         this.props.getUser(response.user)
     })
@@ -52,6 +56,16 @@ class Signup extends Component {
           <fieldset>
             <label>Correo electrónico:</label>
             <input type="email" name="email" value={this.state.email} onChange={ e => this.handleChange(e)} />
+          </fieldset>
+
+          <fieldset>
+            <label>Nombre:</label>
+            <input type="name" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+          </fieldset>
+
+          <fieldset>
+            <label>Teléfono:</label>
+            <input type="phone" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)} />
           </fieldset>
           
           <input type="submit" value="Sign up" />

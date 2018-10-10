@@ -24,10 +24,10 @@ class Navbar extends Component {
       return (
         <nav className="nav-style">
           <ul>
-            <li><a onClick={this.handleLogout}>Logout</a></li>
+            <li><a onClick={this.handleLogout}>Cerrar sesión</a></li>
           </ul>
 
-          <h2>Welcome, {this.state.loggedInUser.username}</h2>
+          <h2>Bienvenid@, {this.state.loggedInUser.username}</h2>
         </nav>
       )
     } else {
@@ -35,8 +35,8 @@ class Navbar extends Component {
         <div>
           <nav className="nav-style">
             <ul>
-            <li><Link to='/signup'>Signup</Link></li>
-            <li><Link to='/login'>Login</Link></li>
+            <li><Link to='/signup'>Registrarse</Link></li>
+            <li><Link to='/login'>Iniciar sesión</Link></li>
             </ul>
           </nav>
         </div>
