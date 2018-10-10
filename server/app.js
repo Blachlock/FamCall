@@ -82,10 +82,12 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 const authRouter = require('./routes/auth');
+const calendarRouter = require('./routes/calendar');
 const genericCrud = require('./routes/genericCRUD');
-app.use('/api/auth', authRouter);
+app.use('/auth', authRouter);
+app.use('/calendar', calendarRouter);
+
 // app.use('/api/news', genericCrud(require('./models/News')));
-app.use('/api/user', genericCrud(require('./models/User')));
 
 
 

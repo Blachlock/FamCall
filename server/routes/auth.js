@@ -3,15 +3,12 @@ const router  = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const passport = require('passport');
+const Invitation = require('../models/Invitation')
 
 
 const login = (req, user) => {
   return new Promise((resolve,reject) => {
     req.login(user, err => {
-      console.log('req.login ')
-      console.log(user)
-
-      
       if(err) {
         reject(new Error('Something went wrong'))
       }else{
@@ -20,6 +17,7 @@ const login = (req, user) => {
     })
   })
 }
+
 
 // SIGNUP
 router.post('/signup', (req, res, next) => {
@@ -50,24 +48,6 @@ router.post('/signup', (req, res, next) => {
   .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
   .catch(e => next(e));
 });
-
-// Check if invitation code (phone) is correct
-// Invitation.findOne({ phone })
-// .then( foundUser => {
-//   if (foundUser) throw new Error('Username already exists');
-
-//   return new Invitation({
-//     username,
-//     password: hashPass,
-//     email,
-//     name, 
-//     phone
-//   }).save();
-// })
-// .then( savedUser => login(req, savedUser)) // Login the user using passport
-// .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
-// .catch(e => next(e));
-// });
 
 
 router.post('/login', (req, res, next) => {
