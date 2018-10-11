@@ -4,41 +4,55 @@ const User = require('../models/User');
 const Couple = require('../models/Couple');
 const Invitation = require('../models/Invitation');
 const sendMail = require('../mail/sendMail');
+require('dotenv').config();
 
 
 /* localhost:3001/calendar/sendInvite */
 router.post('/sendInvite', (req, res, next) => {
   const { from, to, phone } = req.body;
-  // Check if invitation code (phone) is correct
-  Invitation.findOne({ phone })
-    .then(foundInvitation => {
-      if (foundInvitation) throw new Error('Phone already exists');
+ 
 
-      return new Invitation({
-        from,
-        to,
-        phone
-      }).save();
-    })
-    .then(invitation => res.json({
-      status: 'invitation send successfully', invitation 
-    }))
-    .then(invitation => {
+ User.findOne({email: to})
+  .then( parentTwo => {
+
+    console.log(parentTwo._id)
+    if (!parentTwo) throw new Error('We cannot send invites to unregistered users');
+
+    return new Invitation({
+      from,
+      to,
+      phone
+    }).save()
+    .then( createdInvite => {
+      console.log(createdInvite)
+      console.log(parentTwo)
+
       sendMail(
-        to.email,
+        createdInvite.from,
+        createdInvite.to,
         'Confirmation email',
-        `Please confirme your account clicking the following link: <a href='http://localhost:3001/auth/confirm/${invitation._id}'>HERE</a>`
+        `Please confirme your account clicking the following link: <a href='http://localhost:3000/calendar/${createdInvite._id}'>HERE</a>`
       )
+
+      return new Couple ({
+        couple: createdInvite._id,
+        parentOne: req.user._id,
+        parentTwo,
+      }).save()
+      .then(invitation => res.json({status: 'success', invitation }))
+      .catch(e => console.log(e))
     })
-    .catch(e => next(e));
+  }) 
+  
 });
 
 
 
-
-router.get('/calendar/:id', (req, res, next) => {
-  Couple.findById(req.params.id)
+router.get('/:coupleId', (req, res, next) => {
+  let coupleId = req.params.coupleId
+  Couple.findOne({couple: coupleId})
     .then(calendario => res.json(calendario))
+    .catch(e => console.log(e))
 })
 
 

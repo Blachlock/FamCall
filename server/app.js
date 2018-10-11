@@ -11,6 +11,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 
+
 const { DBURL } = process.env;
 
 mongoose.Promise = Promise;
@@ -69,17 +70,10 @@ app.use(session({
 require('./passport')(app);
 
 
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-
-
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
 
 
 const authRouter = require('./routes/auth');
@@ -87,6 +81,7 @@ const calendarRouter = require('./routes/calendar');
 const genericCrud = require('./routes/genericCRUD');
 app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
+
 
 // app.use('/api/news', genericCrud(require('./models/News')));
 

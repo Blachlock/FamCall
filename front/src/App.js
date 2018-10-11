@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
-// import ProjectList from './components/projects/ProjectList';
 import Navbar from './components/navbar/Navbar';
-// import ProjectDetails from './components/projects/ProjectDetails';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 import Profile from './components/contents/Profile'
+import InvitationMail from './components/contents/InvitationMail';
 
 class App extends Component {
 
@@ -56,6 +55,9 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
             <Profile></Profile>
+            <Switch>
+              <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
+            </Switch>
           </header>
         </div>
       );

@@ -1,57 +1,28 @@
+const nodemailer = require('nodemailer');
 require('dotenv').config();
-const {GMAIL_USER, GMAIL_PASSW} = process.env;
 
-var express = require('express');
-var router = express.Router();
-var nodemailer = require('nodemailer');
-const creds = require('dotenv').config();
-
-if(!process.env.GMAIL_USER || !process.env.GMAIL_PASS ){
+if(!process.env.GMAIL_USER || ! process.env.GMAIL_PASS ){
   throw new Error("You have to configure mail credentials in .private.env file.");
 }
 
-var transport = {
-  host: 'smtp.gmail.com',
+let transporter = nodemailer.createTransport({
+  service: 'Gmail',
   auth: {
-    user: creds.GMAIL_USER,
-    pass: creds.GMAIL_PASS
-  }
-}
-
-var transporter = nodemailer.createTransport(transport)
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Server is ready to take messages');
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
   }
 });
 
-router.post('/send', (req, res, next) => {
-  var name = req.body.name
-  var email = req.body.email
-  var message = req.body.message
-  var content = `name: ${name} \n email: ${email} \n message: ${content} `
-
-  var mail = {
-    from: name,
-    to: 'RECEIVING_EMAIL_ADDRESS_GOES_HERE',  //Change to email address that you want to receive messages on
-    subject: 'New Message from Contact Form',
-    text: content
-  }
-
-  transporter.sendMail(mail, (err, data) => {
-    if (err) {
-      res.json({
-        msg: 'fail'
-      })
-    } else {
-      res.json({
-        msg: 'success'
-      })
-    }
+const sendMail = (from, to, subject, message)=>{
+  return transporter.sendMail({
+    from,
+    to, 
+    subject,
+    html: `<b>${message}</b>`
   })
-})
+  .then(info => console.log(info))
+  .catch(error => console.log(error))
+}
 
-module.exports = router;
+
+module.exports = sendMail;
