@@ -14,9 +14,9 @@ router.post('/sendInvite', (req, res, next) => {
 
  User.findOne({email: to})
   .then( parentTwo => {
-
-    console.log(parentTwo._id)
+    console.log(parentTwo)
     if (!parentTwo) throw new Error('We cannot send invites to unregistered users');
+    if (phone !== parentTwo.phone) throw new Error('Not the same phone number');
 
     return new Invitation({
       from,
@@ -24,8 +24,8 @@ router.post('/sendInvite', (req, res, next) => {
       phone
     }).save()
     .then( createdInvite => {
-      console.log(createdInvite)
-      console.log(parentTwo)
+      // console.log(createdInvite)
+      // console.log(parentTwo)
 
       sendMail(
         createdInvite.from,
@@ -45,7 +45,6 @@ router.post('/sendInvite', (req, res, next) => {
   }) 
   
 });
-
 
 
 router.get('/:coupleId', (req, res, next) => {
