@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Couple = require('../models/Couple');
 const Invitation = require('../models/Invitation');
 const sendMail = require('../mail/sendMail');
+
 require('dotenv').config();
 
 

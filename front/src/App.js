@@ -8,6 +8,8 @@ import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 import Profile from './components/contents/Profile'
 import InvitationMail from './components/contents/InvitationMail';
+import Calendars from './components/contents/Calendars';
+
 
 class App extends Component {
 
@@ -59,6 +61,7 @@ class App extends Component {
               <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
             </Switch>
           </header>
+          <Calendars></Calendars>
         </div>
       );
     } else {
