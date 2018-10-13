@@ -303,9 +303,9 @@ button.rbc-input::-moz-focus-inner {
   -webkit-flex: 1 0 0;
       -ms-flex: 1 0 0px;
           flex: 1 0 0;
-  -webkit-flex-basis: 0px;
+          -webkit-flex-basis: 0px;
+          flex-basis: 80px;
       -ms-flex-preferred-size: 0px;
-          flex-basis: 0px;
   overflow: hidden;
   height: 100%;
 }
@@ -692,4 +692,9 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+.a{
+  -webkit-flex-basis: 60px;
+
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Calendars from './Calendars';
 
 class Profile extends Component {
   render() {
@@ -8,7 +7,8 @@ class Profile extends Component {
       <div>
         <Link to='/calendar/create'>Crear calendario familiar</Link>
         <p>Contenido bla bla</p>
-        
+        <Link to='/events/create'>Crear Evento</Link>
+
       </div>
     );
   }
