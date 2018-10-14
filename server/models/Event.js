@@ -10,7 +10,7 @@ const eventSchema = new Schema ({
   title: {type: String},
   description: {type: String},
   comment: { type: Schema.Types.ObjectId, ref: 'Comment' },
-  parentCreated: {type: Schema.Types.ObjectId, ref: "User"}
+  // parentCreated: {type: Schema.Types.ObjectId, ref: "User"}
 }, 
 {timestamps: true});
 
