@@ -3,9 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const Event = require('../models/Event')
 
-router.post('/profile', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const { startDate, endDate, startTime, endTime, title, description, comment } = req.body;
- 
 
  User.findOne({name})
   .then( createdEvent => {

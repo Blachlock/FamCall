@@ -59,8 +59,7 @@ class App extends Component {
             <Profile></Profile>
             <Switch>
               <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
-              <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser} getEvent={this.getTheEvent}/>}/>
-
+              <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
             </Switch>
           </header>
           <BasicCalendar></BasicCalendar>

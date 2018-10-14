@@ -64,7 +64,7 @@ class Event extends Component {
 
           <fieldset>
             <label>Hora final:</label>
-            <input type="name" name="endTime" value={this.state.endTime} onChange={ e => this.handleChange(e)} />
+            <input type="endTime" name="endTime" value={this.state.endTime} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
           <fieldset>
@@ -81,8 +81,11 @@ class Event extends Component {
             <label>Comentarios:</label>
             <input type="comment" name="comment" value={this.state.comment} onChange={ e => this.handleChange(e)} />
           </fieldset>
+
+          <button  onClick= {this.handleFormSubmit.bind(this)} type="submit" value="submit">
+            Submit
+          </button>
           
-          <input type="submit" value="Sign up" />
         </form>
 
       </div>
