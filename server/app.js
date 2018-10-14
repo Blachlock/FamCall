@@ -78,15 +78,13 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 const authRouter = require('./routes/auth');
 const calendarRouter = require('./routes/calendar');
-const genericCrud = require('./routes/genericCRUD');
 const eventsRouter = require('./routes/event')
 const childRouter = require('./routes/child');
 app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
-app.use('/event', eventsRouter);
-app.use('/', childRouter);
+app.use('/events', eventsRouter);
+app.use('/child', childRouter);
 
-// app.use('/api/news', genericCrud(require('./models/News')));
 
 
 

@@ -60,12 +60,12 @@ class Signup extends Component {
 
           <fieldset>
             <label>Nombre:</label>
-            <input type="name" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+            <input type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
           <fieldset>
             <label>Teléfono:</label>
-            <input type="phone" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)} />
+            <input type="number" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)} />
           </fieldset>
           
           <input type="submit" value="Sign up" />

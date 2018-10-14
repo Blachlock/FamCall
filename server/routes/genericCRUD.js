@@ -26,8 +26,6 @@ const simpleCrud = (Model, extensionFn) => {
             .catch(e => next(e))
     })
     
-    
-    
     // CRUD: UPDATE
     router.patch('/:id',(req,res,next) => {
         const {id} = req.params;

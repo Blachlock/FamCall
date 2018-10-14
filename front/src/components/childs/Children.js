@@ -13,12 +13,6 @@ class Child extends Component {
       withCredentials: true
     })
   }
-    
-  // child = (name, birthday) => {
-  //   return this.service.post('/child', {name, birthday})
-  //   .then(response => response.data)
-  //   console.log(name);
-  // }
 
   handleFormSubmit = (pepe) => {
     pepe.preventDefault();
@@ -52,7 +46,7 @@ class Child extends Component {
           
           <fieldset>
             <label>Fecha de nacimiento:</label>
-            <input type="birthday" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
+            <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
           <input type="submit" value="Sign up" />
