@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Child = require('../models/Child');
 
-router.get('/',(req,res,next) => {
+router.get('/child',(req,res,next) => {
   Child.find()
       .then( objChild => res.status(200).json(objChild))
       .catch(e => next(e))

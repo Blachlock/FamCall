@@ -10,6 +10,7 @@ import Profile from './components/contents/Profile'
 import InvitationMail from './components/contents/InvitationMail';
 import BasicCalendar from './components/contents/BasicCalendar';
 import Events from './components/events/Events';
+import Child from './components/childs/Children';
 
 class App extends Component {
 
@@ -60,6 +61,8 @@ class App extends Component {
             <Switch>
               <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
               <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
+              <Route exact path='/child/create' render={() => <Child userInSession={this.state.loggedInUser}/>}/>
+
             </Switch>
           </header>
           <BasicCalendar></BasicCalendar>
