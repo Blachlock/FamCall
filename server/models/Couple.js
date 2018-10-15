@@ -6,8 +6,8 @@ const coupleSchema = new Schema(
     couple: { type: Schema.Types.ObjectId, ref: "Invitation" },
     parentOne: {type: Schema.Types.ObjectId, ref: "User"},
     parentTwo: {type: Schema.Types.ObjectId, ref: "User"},
+    child: [{ type: Schema.Types.ObjectId, ref: "Child" }],
     events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
-    child: [{ type: Schema.Types.ObjectId, ref: "Child" }]
   },
   { timestamps: true }
 );

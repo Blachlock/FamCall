@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import ChildService from './ChildService';
 
 class Child extends Component {
   constructor(props){
-    console.log(props.userInSession)
     super(props);
     this.state = { 
       name:'',
-      birthday:'',
-      user: props.userInSession._id
+      birthday:''
     };
-    this.connection = axios.create({
-      baseURL: 'http://localhost:4000/child',
-      withCredentials: true
-    })
+    this.service = new ChildService();
   }
 
   handleFormSubmit = (pepe) => {
@@ -21,8 +16,9 @@ class Child extends Component {
     const name = this.state.name;
     const birthday = this.state.birthday;
 
-    this.connection.post('/', {name, birthday})
+    this.service.postChild(name, birthday)
     .then( response => {
+      console.log(response);
         this.setState({
             name: "", 
             birthday: ""
@@ -38,7 +34,7 @@ class Child extends Component {
   render() {
     return(
       <div>
-        <h3>Crea tu cuenta con nosotros:</h3>
+        <h3>Añade un hijo a tu cuenta:</h3>
 
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
@@ -51,7 +47,9 @@ class Child extends Component {
             <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
-          <input type="submit" value="Crear niño" />
+          <button  onClick={this.handleFormSubmit} type="submit" value="submit">
+            Submit
+          </button>
         </form>
 
       </div>

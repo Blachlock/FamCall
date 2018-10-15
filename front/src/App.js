@@ -11,7 +11,7 @@ import InvitationMail from './components/contents/InvitationMail';
 import BasicCalendar from './components/contents/BasicCalendar';
 import Events from './components/events/Events';
 import Child from './components/childs/Child';
-import Couple from '/components/couples/Couple';
+// import Couple from '/components/couples/Couple';
 
 class App extends Component {
 
@@ -72,8 +72,7 @@ class App extends Component {
           </div>
         </div>
       );
-    } 
-    else {
+    }  else {
       return (
         <div className="App">
           <header className="App-header">

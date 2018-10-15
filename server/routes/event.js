@@ -17,10 +17,7 @@ router.get('/',(req,res,next) => {
 
 router.post('/',(req,res,next) => {
   console.log(req.body)
-  let { parentCreated, startDate, endDate, startTime, endTime, title, description} = req.body;
-  const child = req.body.name
-  console.log(startDate)
-  console.log(endDate)
+  let { parentCreated, startDate, endDate, startTime, endTime, title, description, child} = req.body;
 
   const newEvent = {
     parentCreated,
@@ -29,7 +26,8 @@ router.post('/',(req,res,next) => {
     startTime,
     endTime,
     title, 
-    description
+    description,
+    child
   }
   console.log(req.user._id)
   const savedEvent = new Event(newEvent)
@@ -40,7 +38,6 @@ router.post('/',(req,res,next) => {
     .catch(err => next(err))
   })
   .catch(e => console.log(e))
-  
 })
 
 

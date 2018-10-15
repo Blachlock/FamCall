@@ -1,16 +1,24 @@
-// auth/Signup.js
 import React, { Component } from 'react';
 import EventService from './EventService';
 
 class Event extends Component {
   constructor(props){
     super(props);
-    this.state = { startDate:'', endDate:'', startTime:'', endTime:'', title:'', description:'', user: props.userInSession._id, child:"", };
+    this.state = { 
+      startDate:'', 
+      endDate:'', 
+      startTime:'', 
+      endTime:'', 
+      title:'', 
+      description:'', 
+      user: props.userInSession._id, 
+      child:''
+    };
     this.service = new EventService();
   }
     
-  handleFormSubmit = (event) => {
-    event.preventDefault();
+  handleFormSubmit = (pepe) => {
+    pepe.preventDefault();
     const startDate = this.state.startDate;
     const endDate = this.state.endDate;
     const startTime = this.state.startTime;
@@ -19,9 +27,8 @@ class Event extends Component {
     const description = this.state.description;
     const user = this.state.user;
     const child= this.state.child;
-    console.log(user)
 
-    this.service.postEvent(startDate, endDate, startTime, endTime, title, description, user)
+    this.service.postEvent(startDate, endDate, startTime, endTime, title, description, user, child)
     .then( response => {
       console.log(response)
         this.setState({
@@ -31,8 +38,8 @@ class Event extends Component {
             endTime: "",
             title: "",
             description: "",
-            user,
-            child
+            user:"",
+            child:""
         });
     })
     .catch( error => console.log(error) )
