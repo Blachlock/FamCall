@@ -4,7 +4,7 @@ import axios from 'axios';
 class CalendarService {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:3001/calendar',
+      baseURL: 'http://localhost:4000/calendar',
       withCredentials: true
     });
   }

@@ -8,7 +8,7 @@ const sendMail = require('../mail/sendMail');
 require('dotenv').config();
 
 
-/* localhost:3001/calendar/sendInvite */
+/* localhost:4000/calendar/sendInvite */
 router.post('/sendInvite', (req, res, next) => {
   const { from, to, phone } = req.body;
  

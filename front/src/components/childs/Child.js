@@ -3,13 +3,15 @@ import axios from 'axios';
 
 class Child extends Component {
   constructor(props){
+    console.log(props.userInSession)
     super(props);
     this.state = { 
       name:'',
-      birthday:''
+      birthday:'',
+      user: props.userInSession._id
     };
     this.connection = axios.create({
-      baseURL: 'http://localhost:3001/child',
+      baseURL: 'http://localhost:4000/child',
       withCredentials: true
     })
   }
@@ -49,7 +51,7 @@ class Child extends Component {
             <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
-          <input type="submit" value="Sign up" />
+          <input type="submit" value="Crear niño" />
         </form>
 
       </div>

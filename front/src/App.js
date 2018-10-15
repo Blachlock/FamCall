@@ -10,7 +10,8 @@ import Profile from './components/contents/Profile'
 import InvitationMail from './components/contents/InvitationMail';
 import BasicCalendar from './components/contents/BasicCalendar';
 import Events from './components/events/Events';
-import Child from './components/childs/Children';
+import Child from './components/childs/Child';
+import Couple from '/components/couples/Couple';
 
 class App extends Component {
 
@@ -59,16 +60,20 @@ class App extends Component {
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
             <Profile></Profile>
             <Switch>
-              <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
-              <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
-              <Route exact path='/child/create' render={() => <Child userInSession={this.state.loggedInUser}/>}/>
-
+               <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
+               <Route exact path='/child/create' render={() => <Child userInSession={this.state.loggedInUser}/>}/>
             </Switch>
           </header>
+          <div>
+          <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
+          </div>
+          <div>
           <BasicCalendar></BasicCalendar>
+          </div>
         </div>
       );
-    } else {
+    } 
+    else {
       return (
         <div className="App">
           <header className="App-header">
