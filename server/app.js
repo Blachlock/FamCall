@@ -80,10 +80,14 @@ const authRouter = require('./routes/auth');
 const calendarRouter = require('./routes/calendar');
 const eventsRouter = require('./routes/event')
 const childRouter = require('./routes/child');
+const coupleRouter = require('./routes/couple');
+
 app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
 app.use('/events', eventsRouter);
 app.use('/child', childRouter);
+app.use('/couple', coupleRouter);
+
 
 
 

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
-const Child = require('../models/Child');
 const Couple = require("../models/Couple")
 
 router.get('/',(req,res,next) => {
   Event.find()
   .populate('parentCreated')
+  .populate('child')
     .then( objEvent => {
       objEvent.forEach((elem) => console.log(elem.parentCreated.name)) //debería ser en el front!! con .map
       return res.status(200).json(objEvent)
@@ -17,6 +17,7 @@ router.get('/',(req,res,next) => {
 
 router.post('/',(req,res,next) => {
   console.log(req.body)
+
   let { parentCreated, startDate, endDate, startTime, endTime, title, description, child} = req.body;
 
   const newEvent = {
@@ -29,7 +30,6 @@ router.post('/',(req,res,next) => {
     description,
     child
   }
-  console.log(req.user._id)
   const savedEvent = new Event(newEvent)
   savedEvent.save()
   .then(eventoCreado => {

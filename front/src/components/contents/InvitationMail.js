@@ -28,7 +28,7 @@ class InvitationMail extends Component {
       .then(response => {
         if (response.status === "success") {
           alert("Message Sent.");
-         /*  this.resetForm(); */
+         this.resetForm();
           this.setState({
             from: from,
             to: to,
@@ -40,6 +40,7 @@ class InvitationMail extends Component {
         }
       })
       .catch(err => {
+        console.log(err)
         this.setState({
           from: from,
           to: to,
@@ -49,9 +50,9 @@ class InvitationMail extends Component {
       });
   };
 
- /*  resetForm() {
+ resetForm() {
     document.getElementById("contact-form").reset();
-  } */
+  } 
 
   render() {
     /* if (this.state.loggedInUser) { */
@@ -70,9 +71,9 @@ class InvitationMail extends Component {
           <fieldset>
             <label>Number</label>
             <input
-              type="text"
+              type="number"
               name="phone"
-              value={this.state.number}
+              value={this.state.phone}
               onChange={e => this.handleChange(e)}
             />
           </fieldset>

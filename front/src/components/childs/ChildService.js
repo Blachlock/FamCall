@@ -13,6 +13,10 @@ class ChildService {
     .then(response => {console.log(response); return response.data})
   }
 
+  getChild = (name, birthday) => {
+    return this.service.get(`/`, {name, birthday})
+    .then(response => {console.log(response); return response.data})
+  }
 }
 
 export default ChildService;

@@ -19,7 +19,7 @@ router.post('/',(req,res,next) => {
     name,
     birthday
   }
-  // console.log(req.user._id)
+  console.log(req.user._id)
   const savedChild = new Child(newChild)
   savedChild.save()
   .then(createChild => {
@@ -52,6 +52,8 @@ router.delete('/:id', (req, res, next)=>{
       res.json(err);
     })
 })
+
+
 
 
 module.exports = router;

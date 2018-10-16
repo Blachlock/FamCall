@@ -5,10 +5,10 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <Link to='/calendar/create'>Crear calendario familiar</Link>
+        <Link to='/calendar/create'>Crear Pareja:</Link>
         <p>Contenido bla bla</p>
-        <Link to='/events/create'>Crear Evento</Link><br></br>
-        <Link to='/child/create'>Crear niño</Link>
+        <Link to='/events/create'>Crear Evento:</Link><br></br>
+        <Link to='/child/create'>Añadir hijo:</Link>
       </div>
     );
   }

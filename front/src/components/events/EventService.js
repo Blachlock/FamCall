@@ -8,11 +8,15 @@ class EventService {
     });
   }
 
-  postEvent = (startDate, endDate, startTime, endTime, title, description, parentCreated) => {
-    return this.service.post(`/`, {startDate, endDate, startTime, endTime, title, description, parentCreated})
+  postEvent = (startDate, endDate, startTime, endTime, title, description, parentCreated, child) => {
+    return this.service.post(`/`, {startDate, endDate, startTime, endTime, title, description, parentCreated, child})
     .then(response => {console.log(response); return response.data})
   }
 
+  getEvent = (child, startDate, endDate, startTime, endTime, title, description, parentCreated) => {
+    return this.service.get(`/`, {child, startDate, endDate, startTime, endTime, title, description, parentCreated})
+    .then(response => {console.log(response); return response.data})
+  }
 }
 
 export default EventService;
