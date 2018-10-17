@@ -64,15 +64,9 @@ class Event extends Component {
   handleChange = (event) => {  
     this.setState({[event.name]: event.value});
   }
-      
-  childList = (e) => {
-    this.state.children.map((e, i) => {
-      return e.name
-    })
-  }
+
 
   render() {
-    
     return(
       <div>
        
@@ -86,14 +80,17 @@ class Event extends Component {
           isMulti 
           onChange={ e =>  this.handleChange(e.target)} 
           options={this.state.children}/> */}
-
+          
+          <fieldset>
+          <label>Evento para el niño:</label>  
           <select name="child" className="select-multiple" onChange={ e =>  this.handleChange(e.target)}>
             {this.state.children ? this.state.children.map((e, i) => {
               return(
                 <option type="text" key={i} name="child" value={e._id}>{e.name}</option>
-              )
-            }) : ""}
+                )
+              }) : ""}
           </select>
+          </fieldset>
 
           <fieldset>
             <label>Fecha inicio:</label>

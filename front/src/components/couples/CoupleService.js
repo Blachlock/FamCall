@@ -9,11 +9,16 @@ class CoupleService {
     });
   }
 
-  getCouple = (couple, parentOne, parentTwo, events, children) => {
-    return this.service.get('/', {couple, parentOne, parentTwo, events, children})
-    .then(response => {console.log(response); return response.data})
-  }
+  // getCouple = (couple, parentOne, parentTwo, events, children) => {
+  //   return this.service.get('/', {couple, parentOne, parentTwo, events, children})
+  //   .then(response => {console.log(response); return response.data})
+  // }
 
+
+    getCouple = () => {
+    return this.service.get('/')
+    .then(response => response.data)
+  } 
   getChildren = (children) => {
     return this.service.get('/', {children})
     .then(response => {console.log(response); return response.data})
