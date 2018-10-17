@@ -6,7 +6,6 @@ class Profile extends Component {
     return (
       <div>
         <Link to='/calendar/create'>Crear Pareja:</Link>
-        <p>Contenido bla bla</p>
         <Link to='/events/create'>Crear Evento:</Link><br></br>
         <Link to='/child/create'>Añadir hijo:</Link>
       </div>

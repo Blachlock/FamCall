@@ -23,10 +23,26 @@ class MyCalendar extends Component {
         end: "2018/10/17",
       }],
       localizer: BigCalendar.momentLocalizer(moment),
+      loggedInUser: null
     };
     this.service = new CoupleService;
     // let localizer = BigCalendar.momentLocalizer(moment)
-    
+  }
+
+  fetchUser(){
+    if( this.state.loggedInUser === null ){
+      this.service.loggedin()
+      .then(response =>{
+        this.setState({
+          loggedInUser:  response
+        }) 
+      })
+      .catch( err =>{
+        this.setState({
+          loggedInUser:  false
+        }) 
+      })
+    }
   }
   
   componentWillMount = () => {
@@ -79,7 +95,10 @@ class MyCalendar extends Component {
               <div className="content">
                 <p>{evento.description}</p>
                 <br/>
-                <time dateTime="2016-1-1">{evento.startTime} - {evento.endTime}</time>
+                <time dateTime>{evento.startDate} - {evento.endDate}</time>
+                <br/>
+                <time dateTime>{evento.startTime} - {evento.endTime}</time>
+
               </div>
             </div>
             <footer className="card-footer">
@@ -87,6 +106,7 @@ class MyCalendar extends Component {
               <a href="#" className="card-footer-item">Delete</a>
             </footer>
           </div>
+          <br></br>
 
       {/* <h1>{evento.title}</h1>
       <h3>{evento.description}</h3>

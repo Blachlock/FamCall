@@ -59,6 +59,7 @@ class App extends Component {
 
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            <Profile/>
           </header>
 
           <div>
@@ -69,13 +70,8 @@ class App extends Component {
             </Switch>
           </div>
 
-          <div>
-          </div>
+          <br></br>
 
-          <div>
-            <Profile/>
-          </div>
-<br></br>
           <div>  
           <BasicCalendar/>
           </div>
