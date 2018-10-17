@@ -28,7 +28,7 @@ class Event extends Component {
   getChildren = () => {
     let url = `http://localhost:4000/couple/getCouple`
     axios.get(url, {withCredentials: true})
-    .then(res => {console.log(res.data.child); this.setState({children: res.data.child})},() => {
+    .then(res =>  this.setState({children: res.data.child}),() => {
     })
     .catch(e => console.log(e))
   }

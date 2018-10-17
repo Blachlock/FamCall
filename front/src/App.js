@@ -56,20 +56,30 @@ class App extends Component {
     if(this.state.loggedInUser){
       return (
         <div className="App">
+
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Profile></Profile>
+          </header>
+
+          <div>
             <Switch>
                <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
                <Route exact path='/child/create' render={() => <Child userInSession={this.state.loggedInUser}/>}/>
+               <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
             </Switch>
-          </header>
-          <div>
-          <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
           </div>
+
           <div>
-          <BasicCalendar></BasicCalendar>
           </div>
+
+          <div>
+            <Profile/>
+          </div>
+<br></br>
+          <div>  
+          <BasicCalendar/>
+          </div>
+
         </div>
       );
     }  else {

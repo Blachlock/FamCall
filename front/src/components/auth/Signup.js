@@ -44,32 +44,77 @@ class Signup extends Component {
         <h3>Crea tu cuenta con nosotros:</h3>
 
         <form onSubmit={this.handleFormSubmit}>
-          <fieldset>
-            <label>Nombre de usuario:</label>
-            <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-          </fieldset>
-          
-          <fieldset>
-            <label>Contraseña:</label>
-            <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-          </fieldset>
 
-          <fieldset>
-            <label>Correo electrónico:</label>
-            <input type="email" name="email" value={this.state.email} onChange={ e => this.handleChange(e)} />
-          </fieldset>
+        <div class="field">
+            <label class="label">Nombre de usuario</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-success" type="text" placeholder="Text input" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+            <p class="help is-success">This username is available</p>
+          </div>
 
-          <fieldset>
-            <label>Nombre:</label>
-            <input type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
-          </fieldset>
+          <div class="field">
+            <label class="label">Nombre real</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Text input" name="name" value={this.state.name} onChange={ e => this.handleChange(e)}/>
+            </div>
+          </div>
 
-          <fieldset>
-            <label>Teléfono:</label>
-            <input type="number" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)} />
-          </fieldset>
-          
-          <input type="submit" value="Sign up" />
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" placeholder="Password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)}/>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-danger" type="email" placeholder="Email input" value="hello@" name="email" value={this.state.email} onChange={ e => this.handleChange(e)}/>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            </div>
+            <p class="help is-danger">This email is invalid</p>
+          </div>
+
+          <div class="field">
+            <label class="label">Teléfono</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Text input" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)}/>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox"/>
+                I agree to the <a href="#">terms and conditions</a>
+              </label>
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link">Submit</button>
+            </div>
+            <div class="control">
+              <button class="button is-text">Cancel</button>
+            </div>
+          </div>
+
+
         </form>
 
       </div>
@@ -77,77 +122,43 @@ class Signup extends Component {
   }
 }
 
-{/* <div class="field">
-  <label class="label">Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input">
-  </div>
-</div>
+{/* <fieldset>
+  <label>Nombre de usuario:</label>
+  <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+</fieldset>
 
-<div class="field">
-  <label class="label">Username</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </div>
-  <p class="help is-success">This username is available</p>
-</div>
+<fieldset>
+  <label>Contraseña:</label>
+  <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+</fieldset>
 
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  <p class="help is-danger">This email is invalid</p>
-</div>
+<fieldset>
+  <label>Correo electrónico:</label>
+  <input type="email" name="email" value={this.state.email} onChange={ e => this.handleChange(e)} />
+</fieldset>
 
-<div class="field">
-  <label class="label">Name</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="Text input">
-  </div>
-</div>
+<fieldset>
+  <label>Nombre:</label>
+  <input type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)} />
+</fieldset>
 
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input type="checkbox">
-      I agree to the <a href="#">terms and conditions</a>
-    </label>
-  </div>
-</div>
+<fieldset>
+  <label>Teléfono:</label>
+  <input type="number" name="phone" value={this.state.phone} onChange={ e => this.handleChange(e)} />
+</fieldset>
 
-<div class="field">
-  <div class="control">
-    <label class="radio">
-      <input type="radio" name="question">
-      Yes
-    </label>
-    <label class="radio">
-      <input type="radio" name="question">
-      No
-    </label>
-  </div>
-</div>
+<input type="submit" value="Sign up" /> */}
 
-<div class="field is-grouped">
-  <div class="control">
-    <button class="button is-link">Submit</button>
-  </div>
-  <div class="control">
-    <button class="button is-text">Cancel</button>
-  </div>
-</div> */}
+
+{/* 
+ 
+
+  
+
+
+
+
+
+ */}
 
 export default Signup;
