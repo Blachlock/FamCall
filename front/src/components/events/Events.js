@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import EventService from './EventService';
 import axios from 'axios'
-import Select from 'react-select';
-import makeAnimated from 'react-select/lib/animated';
 
 class Event extends Component {
   constructor(props){
