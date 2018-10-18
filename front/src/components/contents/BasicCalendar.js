@@ -4,46 +4,28 @@ import moment from 'moment'
 import './react-big-calendar.css'
 import CoupleService from '../couples/CoupleService'
 import update from 'react-addons-update'; 
+import { Link } from 'react-router-dom';
 
 class MyCalendar extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    console.log(props)
+    super(props);
     this.state = { 
-      eventos: [{
+      user: props.userInSession,
+      eventosLista: [],
+      calendarEvents: [{
         id: "",
         title: "",
         allDay: "",
         start: "",
         end: "",
       }],
-      events: [ {id: 1,
-        title: 'All Day Event very long title',
-        allDay: true,
-        start: "2018/10/17",
-        end: "2018/10/17",
-      }],
       localizer: BigCalendar.momentLocalizer(moment),
-      loggedInUser: null
     };
     this.service = new CoupleService;
-    // let localizer = BigCalendar.momentLocalizer(moment)
+
   }
 
-  fetchUser(){
-    if( this.state.loggedInUser === null ){
-      this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
-    }
-  }
   
   componentWillMount = () => {
     this.getEvents()
@@ -51,35 +33,80 @@ class MyCalendar extends Component {
 
   getEvents = () => {
     return this.service.getCouple()
-    .then(res => this.setState({eventos: res.events}))
-  }
-  
-  // getEvents = () => {
-  //   return this.service.getCouple()
-  //   .then(res => {let eventsCopy = JSON.parse(JSON.stringify(this.state.eventos))
+    .then(res => {
+      let changedEvents = res.events.map((e, i) => {
+        let fecha = e.startDate.split("-")
+        let time = e.startTime.split(":")
+        
+        let year = parseFloat(fecha[0])
+        let month = parseFloat(fecha[1])
+        let day = parseFloat(fecha[2])
+        
+        let hour = parseFloat(time[0])
+        let minute = parseFloat(time[0])
+        let second = parseFloat("0")
+        
+        let endfecha = e.endDate.split("-")
+        let endtime = e.endTime.split(":")
+        
+        let endyear = parseFloat(endfecha[0])
+        let endmonth = parseFloat(endfecha[1])
+        let endday = parseFloat(endfecha[2])
+        
+        let endhour = parseFloat(endtime[0])
+        let endminute = parseFloat(endtime[0])
+        let endsecond = parseFloat("0")
       
-  //     let titleState = eventsCopy[0].title
-  //     titleState = res.events[0].title
 
-  //     console.log(eventsCopy)
-  //     ; return this.setState({eventos: update(this.state.eventos, {0: {title: {$set: res.events[0].title}}})})
-  //     })
-  // }
+        return (
+        {
+          id: e._id,
+          title: e.title,
+          allDay: false,
+          start: new Date(year, month-1, day, hour, minute, second),
+          end: new Date(endyear, endmonth-1, endday, endhour, endminute, endsecond)
+        }
+        )
+      })
+    
+      ; return this.setState({calendarEvents: changedEvents, eventosLista: res.events})
+      })
+  }
+
   
   render(){
     let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
-    console.log(this.state.eventos)
-     
+
+    const btnevntStyle = {
+      marginBottom:'0px'
+    }
+    const calendStyle = {
+      paddingLeft:'5px',
+      paddingRight:'5px'
+    }
+
     return(
       <div>
-        <BigCalendar
-        events={this.state.events}
-        views={allViews}
-        step={60}
-        showMultiDayTimes
-        localizer={this.state.localizer}/>
+        <article class="message is-primary" style={btnevntStyle}>
+          <div class="message-body">
+          <a class="button is-info is-outlined"><Link to='/events/create'>Crear recordatorio:</Link></a>
+
+          </div>
+        </article>
+
+        <article class="message">
+          <div class="message-body" style={calendStyle}>
+            <BigCalendar
+            events={this.state.calendarEvents}
+            views={allViews}
+            step={60}
+            showMultiDayTimes
+            localizer={this.state.localizer}/>
+            
+          </div>
+        </article>
         
-        {this.state.eventos ? this.state.eventos.map((evento, i) => (
+        {this.state.eventosLista ? this.state.eventosLista.map((evento, i) => (
         <div key={i}>
 
           <div className="card">

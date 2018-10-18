@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import EventService from './EventService';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 
 class Event extends Component {
   constructor(props){
@@ -44,7 +46,6 @@ class Event extends Component {
 
     this.service.postEvent(startDate, endDate, startTime, endTime, title, description, user, child)
     .then( response => {
-      console.log(response)
         this.setState({
             startDate: "", 
             endDate: "",
@@ -120,9 +121,16 @@ class Event extends Component {
             <input type="text" name="description" value={this.state.description} onChange={ e => this.handleChange(e.target)} />
           </fieldset>
 
-          <button  onClick={this.handleFormSubmit} type="submit" value="submit">
-            Submit
-          </button>
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+                Save changes
+              </a>
+            </p>
+            <p class="control">
+                <Link class="button" to='/calendar'>Cancelar</Link>
+            </p>
+          </div>
           
         </form>
 

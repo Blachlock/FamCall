@@ -59,21 +59,25 @@ class App extends Component {
 
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Profile/>
           </header>
 
           <div>
             <Switch>
                <Route exact path='/calendar/create' render={() => <InvitationMail userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
                <Route exact path='/child/create' render={() => <Child userInSession={this.state.loggedInUser}/>}/>
+               <Route exact path='/profile' render={() => <Profile userInSession={this.state.loggedInUser}/>}/>
+               <Route exact path='/calendar' render={() => <BasicCalendar userInSession={this.state.loggedInUser}/>}/>
                <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
             </Switch>
           </div>
 
-          <br></br>
+          <div>
+          </div>
 
+          <div>
+          </div>
+<br></br>
           <div>  
-          <BasicCalendar/>
           </div>
 
         </div>
