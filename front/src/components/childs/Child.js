@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ChildService from './ChildService';
+import { Link } from 'react-router-dom';
+
 
 class Child extends Component {
   constructor(props){
@@ -47,9 +49,17 @@ class Child extends Component {
             <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
-          <button  onClick={this.handleFormSubmit} type="submit" value="submit">
-            Submit
-          </button>
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+                Save changes
+              </a>
+            </p>
+            <p class="control">
+                <Link class="button" to='/profile'>Cancelar</Link>
+            </p>
+          </div>
+
         </form>
 
       </div>

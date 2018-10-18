@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CalendarService from './CalendarService';
 import 'bulma/css/bulma.css';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -91,11 +93,17 @@ class InvitationMail extends Component {
             <input type="number" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
           </fieldset> */}
 
-          <input className="button" type="submit" value="Enviar invitación"/>
-
-          {/* <button type="submit" value="sendInvite">
-            Submit
-          </button> */}
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+                Save changes
+              </a>
+            </p>
+            <p class="control">
+                <Link class="button" to='/profile'>Cancelar</Link>
+            </p>
+          </div>
+          
 
         </form>
 
