@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
+    "dotenv-cli": "^1.4.0",
     "less": "^3.8.1",
     "moment": "^2.22.2",
     "react": "^16.5.2",
@@ -18,8 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-dev": "dotenv -e .env.development react-scripts build",
-    "build-prod": "dotenv -e .env.production react-scripts build",
+    "build-dev": "REACT_APP_API_URL=http://localhost:4000 react-scripts build",
+    "build-prod": "REACT_APP_API_URL=https://famcall.herokuapp.com react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

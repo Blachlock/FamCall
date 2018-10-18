@@ -1,5 +1,6 @@
 // auth/auth-service.js
 import axios from 'axios';
+require('dotenv').config();
 
 class AuthService {
   constructor() {
@@ -21,7 +22,7 @@ class AuthService {
 
   loggedin = () => {
     return this.service.get('/currentUser',)
-    .then(response => response.data)
+    .then(response => {console.log(response); return response.data})
   }
 
   logout = () => {
