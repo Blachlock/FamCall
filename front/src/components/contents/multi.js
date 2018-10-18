@@ -16,7 +16,7 @@ class MultiForm extends Component {
   }
 
   getChildren = () => {
-    let url = `http://localhost:4000/couple/getCouple`
+    let url = `${process.env.REACT_APP_API_URL}/couple/getCouple`
     axios.get(url, {withCredentials: true})
     .then(res => {console.log(res.data.child); this.setState({children: res.data.child})},() => {
     })

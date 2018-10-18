@@ -3,7 +3,7 @@ import axios from 'axios';
 class ChildService {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:4000/child',
+      baseURL: `${process.env.REACT_APP_API_URL}/child`,
       withCredentials: true
     });
   }
