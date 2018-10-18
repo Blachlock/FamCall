@@ -3,7 +3,6 @@ import BigCalendar from 'react-big-calendar'
 import moment from 'moment'
 import './react-big-calendar.css'
 import CoupleService from '../couples/CoupleService'
-import update from 'react-addons-update'; 
 import { Link } from 'react-router-dom';
 
 class MyCalendar extends Component {
@@ -23,7 +22,6 @@ class MyCalendar extends Component {
       localizer: BigCalendar.momentLocalizer(moment),
     };
     this.service = new CoupleService;
-
   }
 
   
@@ -34,7 +32,7 @@ class MyCalendar extends Component {
   getEvents = () => {
     return this.service.getCouple()
     .then(res => {
-      let changedEvents = res.events.map((e, i) => {
+        let changedEvents = res.events.map((e, i) => {
         let fecha = e.startDate.split("-")
         let time = e.startTime.split(":")
         
@@ -87,22 +85,22 @@ class MyCalendar extends Component {
 
     return(
       <div>
-        <article class="message is-primary" style={btnevntStyle}>
-          <div class="message-body">
-          <a class="button is-info is-outlined"><Link to='/events/create'>Crear recordatorio:</Link></a>
+        <article className="message is-primary" style={btnevntStyle}>
+          <div className="message-body">
+          <p className="button is-info is-outlined"><Link to='/events/create'>Crear recordatorio:</Link></p>
 
           </div>
         </article>
 
-        <article class="message">
-          <div class="message-body" style={calendStyle}>
+        <article className="message">
+          <div className="message-body" style={calendStyle}>
             <BigCalendar
             events={this.state.calendarEvents}
             views={allViews}
             step={60}
             showMultiDayTimes
-            localizer={this.state.localizer}/>
-            
+            localizer={this.state.localizer}>
+            </BigCalendar>
           </div>
         </article>
         
@@ -112,11 +110,7 @@ class MyCalendar extends Component {
           <div className="card">
             <header className="card-header">
               <h3 className="card-header-title">{evento.title}</h3>
-              <a href="#" className="card-header-icon" aria-label="more options">
-                <span className="icon">
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
+              
             </header>
             <div className="card-content">
               <div className="content">
@@ -129,16 +123,11 @@ class MyCalendar extends Component {
               </div>
             </div>
             <footer className="card-footer">
-              <a href="#" className="card-footer-item">Edit</a>
-              <a href="#" className="card-footer-item">Delete</a>
+              <p href="#" className="card-footer-item">Edit</p>
+              <p href="#" className="card-footer-item">Delete</p>
             </footer>
           </div>
           <br></br>
-
-      {/* <h1>{evento.title}</h1>
-      <h3>{evento.description}</h3>
-      <p>Desde: {evento.startTime}</p>
-      <p>Hasta: {evento.endTime}</p> */}
       
       </div>
       )) : ""}

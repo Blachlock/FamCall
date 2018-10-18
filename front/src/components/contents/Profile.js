@@ -5,19 +5,14 @@ class Profile extends Component {
   render() {
     return (
 
-      <div class="tabs">
-  <ul>
-    <li><a><Link to='/calendar/create'>Crear Pareja:</Link></a></li>
-    <li><a><Link to='/child/create'>Añadir hijo:</Link></a></li>
-    
-  </ul>
-</div>
+      <div className="tabs">
+        <ul>
+          <li><Link to='/calendar/create'>Crear Pareja:</Link></li>
+          <li><Link to='/child/list'>Hijos:</Link></li>
+          <li><Link to='/child/create'>Añadir hijo:</Link></li>
+        </ul>
+      </div>
 
-      // <div>
-      //   <Link to='/calendar/create'>Crear Pareja:</Link>
-      //   <Link to='/events/create'>Crear Evento:</Link><br></br>
-      //   <Link to='/child/create'>Añadir hijo:</Link>
-      // </div>
     );
   }
 }

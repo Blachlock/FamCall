@@ -34,29 +34,50 @@ class Child extends Component {
     this.setState({[name]: value});
   }
   render() {
+    const btnsStyle = {
+      display: 'flex',
+    justifyContent: 'center'
+    }
     return(
       <div>
-        <h3>Añade un hijo a tu cuenta:</h3>
+        <h1>Añade un hijo a tu cuenta:</h1>
 
         <form onSubmit={this.handleFormSubmit}>
-          <fieldset>
-            <label>Nombre de niño:</label>
-            <input type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)}/>
-          </fieldset>
-          
-          <fieldset>
-            <label>Fecha de nacimiento:</label>
-            <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
-          </fieldset>
 
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
-                Save changes
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Nombre del niño:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="text" placeholder="Fulanito" name="name" value={this.state.name} onChange={ e => this.handleChange(e)}/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Fecha de nacimiento:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="date" placeholder="01/01/2000" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)}/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="field is-grouped" style={btnsStyle}>
+            <p className="control">
+              <a className="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+                Guardar
               </a>
             </p>
-            <p class="control">
-                <Link class="button" to='/profile'>Cancelar</Link>
+            <p className="control">
+                <Link className="button" to='/profile'>Cancelar</Link>
             </p>
           </div>
 

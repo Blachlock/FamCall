@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EventService from './EventService';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import 'bulma/css/bulma.css';
+
 
 
 class Event extends Component {
@@ -66,6 +68,8 @@ class Event extends Component {
 
 
   render() {
+   
+
     return(
       <div>
        
@@ -73,62 +77,117 @@ class Event extends Component {
 
         <form onSubmit={this.handleFormSubmit}>
           
-          {/* <Select 
-          closeMenuOnSelect={false} 
-          components={makeAnimated()} 
-          isMulti 
-          onChange={ e =>  this.handleChange(e.target)} 
-          options={this.state.children}/> */}
+         
           
-          <fieldset>
-          <label>Evento para el niño:</label>  
-          <select name="child" className="select-multiple" onChange={ e =>  this.handleChange(e.target)}>
-            {this.state.children ? this.state.children.map((e, i) => {
-              return(
-                <option type="text" key={i} name="child" value={e._id}>{e.name}</option>
-                )
-              }) : ""}
-          </select>
-          </fieldset>
 
-          <fieldset>
-            <label>Fecha inicio:</label>
-            <input type="date" name="startDate" value={this.state.startDate} onChange={ e => this.handleChange(e.target)}/>
-          </fieldset>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Department</label>
+            </div>
+            <div class="field-body">
+              <div class="field is-narrow">
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select name="child" className="select-multiple" onChange={ e =>  this.handleChange(e.target)}>
+                    {this.state.children ? this.state.children.map((e, i) => {
+                      return(
+                        <option type="text" key={i} name="child" value={e._id}>{e.name}</option>
+                        )
+                      }) : ""}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <fieldset>
-            <label>Fecha final:</label>
-            <input type="date" name="endDate" value={this.state.endDate} onChange={ e => this.handleChange(e.target)} />
-          </fieldset>
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Fecha inicio del recordatorio:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="date" name="startDate" value={this.state.startDate} onChange={ e => this.handleChange(e.target)}/>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Fecha final del recordatorio:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="date" name="endDate" value={this.state.endDate} onChange={ e => this.handleChange(e.target)}/>
+                </div>
+              </div>
+            </div>
+          </div>  
 
-          <fieldset>
-            <label>Hora inicio:</label>
-            <input type="time" name="startTime" value={this.state.startTime} onChange={ e => this.handleChange(e.target)} />
-          </fieldset>
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Hora inicio del recordatorio:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="time" name="startTime" value={this.state.startTime} onChange={ e => this.handleChange(e.target)}/>
+                </div>
+              </div>
+            </div>
+          </div>      
 
-          <fieldset>
-            <label>Hora final:</label>
-            <input type="time" name="endTime" value={this.state.endTime} onChange={ e => this.handleChange(e.target)} />
-          </fieldset>
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Hora final del recordatorio:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="time" name="endTime" value={this.state.endTime} onChange={ e => this.handleChange(e.target)}/>
+                </div>
+              </div>
+            </div>
+          </div>     
 
-          <fieldset>
-            <label>Título:</label>
-            <input type="text" name="title" value={this.state.title} onChange={ e => this.handleChange(e.target)} />
-          </fieldset>
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Título:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="text" placeholder="Fulanito" name="title" value={this.state.title} onChange={ e => this.handleChange(e.target)}/>
+                </div>
+              </div>
+            </div>
+          </div>     
 
-          <fieldset>
-            <label>Descripción:</label>
-            <input type="text" name="description" value={this.state.description} onChange={ e => this.handleChange(e.target)} />
-          </fieldset>
+         <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Descripción:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                 <textarea class="textarea" placeholder="Introduce aquí los detalles de tu recordatorio" name="description" value={this.state.description} onChange={ e => this.handleChange(e.target)}/>
+                  {/* <input className="input is-small" type="text" placeholder="Introduce una descripción" name="description" value={this.state.description} onChange={ e => this.handleChange(e)}/> */}
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
-                Save changes
-              </a>
+          
+
+          <div className="field is-grouped">
+            <p className="control">
+              <a className="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">Guardar</a>
             </p>
-            <p class="control">
-                <Link class="button" to='/calendar'>Cancelar</Link>
+            <p className="control">
+                <Link className="button" to='/calendar'>Cancelar</Link>
             </p>
           </div>
           

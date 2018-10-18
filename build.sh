@@ -4,3 +4,4 @@ cd front
 npm run build-prod
 cd ..
 mv front/build/* server/public
+git add .

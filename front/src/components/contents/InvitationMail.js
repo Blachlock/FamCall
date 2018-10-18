@@ -59,29 +59,38 @@ class InvitationMail extends Component {
   } 
 
   render() {
-    /* if (this.state.loggedInUser) { */
+    const btnsStyle = {
+      display: 'flex',
+    justifyContent: 'center'
+    }
     return (
       <div className="col-sm-4 offset-sm-4">
         <form id="contact-form" onSubmit={this.handleSubmit}>
 
-          <div className="field">
-            <p className="control has-icons-left has-icons-right">
-              <input className="input" type="email" placeholder="Email" name="to" value={this.state.to} onChange={e => this.handleChange(e)}/>
-              <span className="icon is-small is-left">
-                <i className="fas fa-envelope"></i>
-              </span>
-              <span className="icon is-small is-right">
-                <i className="fas fa-check"></i>
-              </span>
-            </p>
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Enviar invitación a:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="email" placeholder="Correo electrónico" name="to" value={this.state.to} onChange={e => this.handleChange(e)} />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="field">
-            <p className="control has-icons-left">
-              <input className="input" type="number" placeholder="Teléfono" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)}/>
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock"></i>
-              </span>
-            </p>
+
+          <div className="field is-horizontal">
+            <div className="field-label is-small">
+              <label className="label">Verificar con número de teléfono invitado:</label>
+            </div>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+                  <input className="input is-small" type="number" placeholder="Número de teléfono" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* <fieldset>
@@ -93,14 +102,14 @@ class InvitationMail extends Component {
             <input type="number" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
           </fieldset> */}
 
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+          <div className="field is-grouped" style={btnsStyle}>
+            <p className="control">
+              <a className="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
                 Save changes
               </a>
             </p>
-            <p class="control">
-                <Link class="button" to='/profile'>Cancelar</Link>
+            <p className="control">
+                <Link className="button" to='/profile'>Cancelar</Link>
             </p>
           </div>
           
