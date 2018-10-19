@@ -1,87 +1,50 @@
 import React, { Component } from 'react';
-import ChildService from './ChildService';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
-class Child extends Component {
+class ChildList extends Component {
   constructor(props){
     super(props);
     this.state = { 
-      name:'',
-      birthday:''
+      child:'',
+      children: null
     };
-    this.service = new ChildService();
   }
 
-  handleFormSubmit = (pepe) => {
-    pepe.preventDefault();
-    const name = this.state.name;
-    const birthday = this.state.birthday;
+  componentWillMount(){
+    this.getChildren()
+  }
 
-    this.service.postChild(name, birthday)
-    .then( response => {
-      console.log(response);
-        this.setState({
-            name: "", 
-            birthday: ""
-        });
+  getChildren = () => {
+    let url = `${process.env.REACT_APP_API_URL}/couple/getCouple`
+    axios.get(url, {withCredentials: true})
+    .then(res =>  this.setState({children: res.data.child}),() => {
     })
-    .catch( error => console.log(error) )
+    .catch(e => console.log(e))
   }
 
-  handleChange = (pepe) => {  
-    const {name, value} = pepe.target;
-    this.setState({[name]: value});
-  }
   render() {
-    return(
-      <div>
-        <h3>Añade un hijo a tu cuenta:</h3>
+    return (
 
-        <form onSubmit={this.handleFormSubmit}>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-small">
-              <label class="label">Nombre del niño:</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input is-small" type="text" placeholder="Fulanito" name="name" value={this.state.name} onChange={ e => this.handleChange(e)}/>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          {/* <fieldset>
-            <label>Nombre de niño:</label>
-            <input type="text" name="name" value={this.state.name} onChange={ e => this.handleChange(e)}/>
-          </fieldset>
-          
-          <fieldset>
-            <label>Fecha de nacimiento:</label>
-            <input type="date" name="birthday" value={this.state.birthday} onChange={ e => this.handleChange(e)} />
-          </fieldset> */}
-
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
-                Save changes
-              </a>
-            </p>
-            <p class="control">
-                <Link class="button" to='/profile'>Cancelar</Link>
-            </p>
-          </div>
-
-        </form>
-
+      <div className="tabs is-centered is-boxed">
+        {this.state.children ? this.state.children.map((e, i) => {
+            return(
+                <ul key={i}>
+                  <li className="is-active" key={i} name="child" value={e._id}>
+                    
+                      <span className="icon is-small"><i className="fas fa-image"></i></span>
+                      <Link to={`/child/${e._id}`}>{e.name}</Link>
+                  
+                  </li>
+                </ul>
+             )
+            }) : <div></div>
+          }
       </div>
     )
   }
 }
 
-export default Child;
+
+
+export default ChildList;

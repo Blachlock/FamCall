@@ -11,6 +11,8 @@ import InvitationMail from './components/contents/InvitationMail';
 import BasicCalendar from './components/contents/BasicCalendar';
 import Events from './components/events/Events';
 import Child from './components/childs/Child';
+import ChildList from './components/childs/ChildList'
+import ChildProfile from "./components/childs/ChildProfile"
 // import Couple from '/components/couples/Couple';
 
 class App extends Component {
@@ -68,6 +70,9 @@ class App extends Component {
                <Route exact path='/profile' render={() => <Profile userInSession={this.state.loggedInUser}/>}/>
                <Route exact path='/calendar' render={() => <BasicCalendar userInSession={this.state.loggedInUser}/>}/>
                <Route exact path='/events/create' render={() => <Events userInSession={this.state.loggedInUser}/>}/>
+               <Route exact path='/child/list' render={() => <ChildList userInSession={this.state.loggedInUser}/>}/>
+               <Route exact path='/child/:id' render={({match}) => <ChildProfile params={match.params} userInSession={this.state.loggedInUser}/>}/>
+
             </Switch>
           </div>
 
@@ -92,6 +97,9 @@ class App extends Component {
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
             </Switch>
           </header>
+
+          
+
         </div>
       );
     }
