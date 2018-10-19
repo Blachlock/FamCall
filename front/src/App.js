@@ -62,6 +62,7 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
+          
 
           <div>
             <Switch>
@@ -76,18 +77,21 @@ class App extends Component {
             </Switch>
           </div>
 
-          <div>
-          </div>
-
-          <div>
-          </div>
-<br></br>
-          <div>  
-          </div>
+         
 
         </div>
       );
     }  else {
+      const bodyStyle = {
+        backgroundImage: `url(${"https://res.cloudinary.com/dtonq7ehf/image/upload/v1539943279/famcall/portada_famcall.jpg"})`,
+        height: '100vh',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '-140px',
+    }
+      const titleStyle = {
+        paddingTop: '30px'
+      }
       return (
         <div className="App">
           <header className="App-header">
@@ -97,8 +101,13 @@ class App extends Component {
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
             </Switch>
           </header>
+          <body style={bodyStyle}>
+         
+          <p className="title is-1" style={titleStyle}>FamCall</p>
 
-          
+          </body>
+
+
 
         </div>
       );

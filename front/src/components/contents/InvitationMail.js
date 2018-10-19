@@ -93,21 +93,12 @@ class InvitationMail extends Component {
             </div>
           </div>
 
-          {/* <fieldset>
-            <label>To</label>
-            <input type="email" name="to" value={this.state.to} onChange={e => this.handleChange(e)} />
-          </fieldset>
-          <fieldset>
-            <label>Number</label>
-            <input type="number" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
-          </fieldset> */}
-
           <div className="field is-grouped" style={btnsStyle}>
-            <p className="control">
-              <a className="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
+            <div className="control">
+              <button className="button is-link" onClick={this.handleFormSubmit} type="submit" value="submit">
                 Save changes
-              </a>
-            </p>
+              </button>
+            </div>
             <p className="control">
                 <Link className="button" to='/profile'>Cancelar</Link>
             </p>
